@@ -2,6 +2,7 @@
 The personal website of Benjamin Shai
 
 There are two main components of this site:
+
 1.  the source directory
 2.  the builder
 
