@@ -12,9 +12,9 @@ var _ = require('underscore');
 var postsTemplate = _.template("define([], function () {\n" +
     "\t'use strict';\n" +
     "\n" +
-    "\treturn [<%= posts%>\n\t];\n" +
+    "\treturn {<%= posts%>\n\t};\n" +
     "});")
-var postTemplate = _.template("\n\t\t{\n\t\t\ttitle: '<%= title%>', \n\t\t\tdate: '<%= date%>', \n\t\t\tcontent: '<%= content%>'\n\t\t}")
+var postTemplate = _.template("\n\t\t<%= url%>: {\n\t\t\ttitle: '<%= title%>', \n\t\t\tdate: '<%= date%>', \n\t\t\tcontent: '<%= content%>'\n\t\t}")
 
 var filePath = path.join(__dirname, 'blog_posts');
 
@@ -48,7 +48,7 @@ _.each(files, function(file) {
 
     data = sanitizeContent(data);
 
-    posts.push(postTemplate({title: title, date: date, content: data}));
+    posts.push(postTemplate({url: file, title: title, date: date, content: data}));
 });
 
 ncp(path.join(__dirname, 'src'), path.join(__dirname, 'target'), function (err) {
