@@ -1,0 +1,25 @@
+{
+  "name": "personal-website",
+  "version": "0.0.0",
+  "description": "The personal website of Benjamin Shai",
+  "main": "builder.js",
+  "dependencies": {
+    "archiver": "^0.15.1",
+    "ncp": "^2.0.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/benmanbs/personal-website.git"
+  },
+  "author": "Benjamin Shai <benmanbs@gmail.com> (http://github.com/benmanbs)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benmanbs/personal-website/issues"
+  },
+  "homepage": "https://github.com/benmanbs/personal-website"
+}

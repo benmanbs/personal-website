@@ -7,6 +7,7 @@
 var fs = require('fs');
 var path = require('path');
 var ncp = require('ncp').ncp;
+var archiver = require('archiver');
 var _ = require('underscore');
 var postsTemplate = _.template("define([], function () {\n" +
     "\t'use strict';\n" +
@@ -59,6 +60,17 @@ ncp(path.join(__dirname, 'src'), path.join(__dirname, 'target'), function (err) 
         if (err) {
             return console.error(err);
         }
+        var archive = archiver.create('zip', {});
+
+        archive.on('entry', function(data) {
+            fs.writeFile(path.join(__dirname, 'target', 'site.zip'), data, function(err) {
+                if (err) {
+                    return console.error(err);
+                }
+            });
+        });
+
+        archive.directory(path.join(__dirname, 'target')).finalize();
     })
 });
 
