@@ -13,7 +13,7 @@ var postsTemplate = _.template("define([], function () {\n" +
     "\t'use strict';\n" +
     "\n" +
     "\treturn {<%= posts%>\n\t};\n" +
-    "});")
+    "});");
 var postTemplate = _.template("\n\t\t'<%= url%>': {\n\t\t\ttitle: '<%= title%>', \n\t\t\tdate: '<%= date%>', \n\t\t\tcontent: '<%= content%>'\n\t\t}")
 
 var filePath = path.join(__dirname, 'blog_posts');
