@@ -13,6 +13,8 @@ define([
     // Views
     './views/SiteView',
     './views/BasicView',
+    './views/BlogListView',
+    './views/BlogPostView',
 
     // Templates
     'text!templates/pages/home.html',
@@ -28,6 +30,8 @@ define([
     // Views
     SiteView,
     BasicView,
+    BlogListView,
+    BlogPostView,
 
     // Templates
     homeTemplate,
@@ -46,7 +50,8 @@ define([
             'projects': 'projects',
             'resume': 'resume',
             'blog': 'blog',
-            'blog/:id': 'blogPost',
+            'blog/:page': 'blog',
+            'blog/posts/:id': 'blogPost',
             '': 'home'
         },
 
@@ -54,54 +59,75 @@ define([
          * The homepage of the website.
          */
         home: function() {
-            this.showBasicView(homeTemplate);
+            this._showBasicView(homeTemplate);
         },
 
         /**
          * The contact page of the website.
          */
         contact: function() {
-            this.showBasicView(contactTemplate);
+            this._showBasicView(contactTemplate);
         },
 
         /**
          * The about me page of the website.
          */
         about: function() {
-            this.showBasicView(aboutTemplate);
+            this._showBasicView(aboutTemplate);
         },
 
         /**
          * The projects page of the website.
          */
         projects: function() {
-            this.showBasicView(projectsTemplate);
+            this._showBasicView(projectsTemplate);
         },
 
         /**
          * The resume page of the website.
          */
         resume: function() {
-            this.showBasicView(resumeTemplate);
+            this._showBasicView(resumeTemplate);
         },
 
         /**
          * The blog page of the website.
          */
-        blog: function() {
-            this.showBasicView("I'm the blog!");
+        blog: function(page) {
+            page = page || 1;
+            var collection = [
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'},
+                {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis.'}
+            ];
+            this._showView(new BlogListView({collection: collection, pageNum: page}));
         },
 
         /**
          * The blog page of the website.
          */
         blogPost: function(id) {
-            this.showBasicView("Requested blog post: " + id);
+            this._showView(new BlogPostView({model: new Backbone.Model({
+                title: "Something",
+                date: new Date(),
+                content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi arcu arcu, ornare sed malesuada aliquet, blandit nec mauris. Ut condimentum blandit lorem sed eleifend. Nam non libero nec neque luctus congue. Praesent non eleifend sem. Aenean molestie egestas pretium. Cras vitae ex ultrices, posuere odio nec, finibus risus. Nunc consequat massa a nunc imperdiet, at vulputate enim accumsan. Donec a nisl et ex viverra suscipit eget eu lorem. Sed sagittis risus commodo elit vulputate mollis."
+            })}));
+        },
+        
+        _showBasicView: function(template) {
+            var homeView = new BasicView({template: _.template(template)});
+            this._showView(homeView);
         },
 
-        showBasicView: function(template) {
-            var homeView = new BasicView({template: _.template(template)});
-            this.view.getRegion('content').show(homeView);
+        _showView: function (view) {
+            this.view.getRegion('content').show(view);
         },
 
         initialize: function() {
