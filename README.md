@@ -20,3 +20,11 @@ Each post has a title attribute, a date posted, and a content.
 
 The generated JSON file is used to hydrate the BlogCollection.
 
+## TODO
+
+- Styling everything
+- Replacing all the images in the blog posts
+- Swap in the blog posts for the dummy collections
+- Fill in content on all the pages
+- Favicon
+

@@ -1,0 +1,31 @@
+Managing Client Expectations
+
+1/11/11
+
+This post is a summary of a story that happened to me and some advice I can impart based on it.
+
+I was contacted by a friend of mine to develop a website for him. Usually, when a friend asks me for help with something relating to technology, I am hesitant to offer my services because I don't want a working relationship to taint our friendship. Additionally, working with friends usually results in getting paid less and often breeds an unsatisfactory experience for both sides, since the job may not be approached in a professional manner. However, this particular job seemed simple enough, and given our friendship and the simplicity of the task at hand, I figured that I would forgo my usual rule and that it would be fine to take on the project.
+
+In pretty typical fashion, my friend, and now client, sent me a link to a website that he said he wanted his site to just like, albeit with color modifications. I checked out the site and it seemed to be pretty well put together, but I noticed that it was built in Flash. For those unaware, Flash is a piece of technology that is quickly going out of style, as it never quite had the feel of a normal web experience and rich applications built with HTML, CSS, and importantly JavaScript are much more in favor.
+
+I informed my friend that, while I could certainly accomplish this task, I would not be using Flash because, in addition to its descent out of vogue, it is terrible for Search Engine Optimization (SEO), results in a slower user experience, may not be viewed in all browsers (especially mobile ones, namely the iOS devices), and has various quirks with no real benefits for this particular project. He seemed fine with this decision and trusted my expertise as a professional developer.
+
+I began eagerly developing the website for him. I decided to use the WordPress framework--incidentally the same framework I used to develop this site (and see how lovely it looks!). This piece of software seemed ideal for the site he wanted me to build. WordPress is known for its excellent SEO rankings, it is cross-browser compatibility, and, with a few plugins enabled, its speed. Most importantly, however, it allows the users to manage the content of the site, giving them more control over the content and cutting me out of any minor tweaks tweaks/updates that would be needed in the future. Obviously this point appealed to me. It would allow me to remove myself from maintaining the site if my friend needed to update a figure or graph. Especially because of his general understanding of technology, I was confident he would be able to make these changes by himself.
+
+Early in the development, the client contacted me and sent me a link to a template site. He showed me that the exact template from the site he was basing his off of was available for free download and wanted to know if we were going to take this route. I patiently explained to him that I had decided not to use Flash because of the aforementioned reasons and that cost was not the reason we had refrained from using that template. He seemed satisfied with that response and I continued my work.
+
+After I had received all the content from him, I quickly placed it into the site. I dropped him an email stating that the preliminary work on the site was complete and that, although there were obviously still small tweaks to be made to the fonts and colors, the overall template was done. I received an angry reply saying something along the lines of "Hey Buddy, I told you to make an exact replica of that other site, the site you did does not look as professional, this is terrible, my partner could have done it in 5 minutes." Needless to say, this wasn't the response I dreamed of as I spent hours building them a custom WordPress theme.
+
+I calmly responded that I thought he was grossly misjudging the amount of work required to create a site with the features a WordPress site has, that there was a reason we did not use Flash (again), and that with a few tweaks the site would look just as he wanted. I received no response to this email, but the next day, when I pointed my browser to their URL, I saw the crummy flash template up. What???
+
+I quickly logged into the FTP and saw that ALL of my content had been deleted and they had replaced everything with the Flash template. It was at this point that I understood clearly how this client worked. He didn't care about function, he cared about gimmick. The Flash template had rounded corners, a feature I had not yet inserted into the WordPress theme. Those shiny edges had them hooked and they could see nothing else. In a fit of "There are no rounded corners!!!!"-rage, they deleted all the work I had stupidly not backed up.
+
+Which brings us to the lessons learned:
+<ul>
+	<li>Always back up your work! Always! Save a local copy of whatever you are working on, and make sure that it has the most updated work. You never know when a server (or a client) is going to crash or something else out of your control will happen.</li>
+	<li>Make sure you clearly outline to the client what exactly it is that you are accomplishing with each step of the process and make sure that they trust your opinion as the expert and believe you are doing it in the best way possible.</li>
+	<li>Avoid working with friends as you will inevitably fail to use the professional process stated above. You will end up getting screwed.</li>
+	<li>Don't give the client FTP access as this invites them to steal your work or delete it in a rage.</li>
+	<li>Communicate with the client. This is the most important point, from both the perspective of the client and the contractor. This situation would have been avoided if I had better communicated exactly what was happening. It would also have helped if the client had communicated his displeasure to me in a constructive manner. As it turned out, my friend was not interested in SEO and usability, or anything other than a particular simple flash template.</li>
+</ul>
+After this incident, our relationship wasn't ruined. However, it taught me a number of valuable lessons about dealing with friends as clients and managing expectations.
