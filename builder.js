@@ -38,11 +38,11 @@ _.each(files, function(file) {
 
     data = fs.readFileSync(path.join(filePath, file), {encoding: 'utf-8'});
 
-    var titleEnd = data.indexOf('\n');
+    var titleEnd = data.indexOf('\n\n');
     var title = data.substr(0,titleEnd);
     data = data.substr(titleEnd + 1);
 
-    var dateEnd = data.indexOf('\n');
+    var dateEnd = data.indexOf('\n\n');
     var date = data.substr(0,dateEnd);
     data = data.substr(dateEnd + 1);
 
