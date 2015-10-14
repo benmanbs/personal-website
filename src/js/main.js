@@ -8,7 +8,8 @@ requirejs.config({
         underscore: 'lib/underscore-min',
         backbone: 'lib/backbone-min',
         text: 'lib/text',
-        marionette: 'lib/backbone.marionette.min'
+        marionette: 'lib/backbone.marionette.min',
+        moment: 'lib/moment.min'
     }
 });
 

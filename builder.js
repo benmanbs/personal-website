@@ -14,7 +14,7 @@ var postsTemplate = _.template("define([], function () {\n" +
     "\n" +
     "\treturn {<%= posts%>\n\t};\n" +
     "});");
-var postTemplate = _.template("\n\t\t'<%= url%>': {\n\t\t\ttitle: '<%= title%>', \n\t\t\tdate: new Date('<%= date%>'), \n\t\t\tcontent: '<%= content%>'\n\t\t}")
+var postTemplate = _.template("\n\t\t'<%= url%>': {\n\t\t\turl: '<%= url%>', \n\t\t\ttitle: '<%= title%>', \n\t\t\tdate: new Date('<%= date%>'), \n\t\t\tcontent: '<%= content%>'\n\t\t}")
 
 var filePath = path.join(__dirname, 'blog_posts');
 
@@ -24,7 +24,7 @@ var sanitizeContent = function(content) {
     // clean up the quotes
     content = content.replace(/'/g, '\\\'');
     // clean up the \n
-    content = content.replace(/\n/g, '\' + \n\t\t\t\t\'');
+    content = content.replace(/\n/g, '\' + \n\t\t\t\t\'<br>');
     return content;
 };
 
@@ -40,11 +40,11 @@ _.each(files, function(file) {
 
     var titleEnd = data.indexOf('\n\n');
     var title = data.substr(0,titleEnd);
-    data = data.substr(titleEnd + 1);
+    data = data.substr(titleEnd + 2);
 
     var dateEnd = data.indexOf('\n\n');
     var date = data.substr(0,dateEnd);
-    data = data.substr(dateEnd + 1);
+    data = data.substr(dateEnd + 2);
 
     data = sanitizeContent(data);
 

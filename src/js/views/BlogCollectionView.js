@@ -25,7 +25,7 @@ define([
         },
 
         childViewOptions: function(model, index) {
-            var numChars = index == 0 ? 1000 : 400;
+            var numChars = index == 0 && this.pageNum == 1 ? 1000 : 400;
             return {
                 numChars: numChars
             }

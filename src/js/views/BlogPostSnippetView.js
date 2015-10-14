@@ -3,20 +3,27 @@
  */
 define([
     'marionette',
-    'underscore'
+    'underscore',
+    'moment',
+
+    'text!templates/blogPostSnippet.html'
 ], function (
     Marionette,
-    _
+    _,
+    moment,
+
+    template
 ) {
     'use strict';
 
     return Marionette.ItemView.extend({
-        template: _.template('<%= numChars%>:<%= content%>'),
+        template: _.template(template),
 
         templateHelpers: function() {
-            return _.extend({
-                numChars: this.options.numChars
-            }, this.model.toJSON());
+            return _.extend({}, this.model.toJSON(), {
+                content: this.model.get('content').substr(0, this.model.get('content').lastIndexOf(' ', this.options.numChars)),
+                date: moment(this.model.get('date')).format('MMMM Do, YYYY')
+            });
         }
     })
 
