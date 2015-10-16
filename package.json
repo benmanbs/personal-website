@@ -1,25 +1,22 @@
 {
-  "name": "personal-website",
+  "name": "node-static-site",
   "version": "0.0.0",
-  "description": "The personal website of Benjamin Shai",
-  "main": "builder.js",
-  "dependencies": {
-    "archiver": "^0.15.1",
-    "ncp": "^2.0.0",
-    "underscore": "^1.8.3"
-  },
-  "devDependencies": {},
+  "description": "Minimal amount of code to get a static site started up",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/benmanbs/personal-website.git"
+    "url": "git://github.com/benmanbs/node-static-site.git"
   },
   "author": "Benjamin Shai <benmanbs@gmail.com> (http://github.com/benmanbs)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/benmanbs/personal-website/issues"
+    "url": "https://github.com/benmanbs/node-static-site/issues"
   },
-  "homepage": "https://github.com/benmanbs/personal-website"
+  "homepage": "https://github.com/benmanbs/node-static-site",
+  "dependencies": {
+    "node-static": "^0.7.7"
+  }
 }

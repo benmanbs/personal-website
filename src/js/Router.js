@@ -3,6 +3,8 @@
  * all the menu items, and all the templates that fill
  * in the content for them.
  *
+ * TODO get rid of hashes in URLS
+ *
  * @author bshai date 10/12/15.
  */
 define([
@@ -22,7 +24,6 @@ define([
     // Templates
     'text!templates/pages/home.html',
     'text!templates/pages/about.html',
-    'text!templates/pages/contact.html',
     'text!templates/pages/projects.html',
     'text!templates/pages/resume.html'
 ], function (
@@ -42,7 +43,6 @@ define([
     // Templates
     homeTemplate,
     aboutTemplate,
-    contactTemplate,
     projectsTemplate,
     resumeTemplate
 ) {
@@ -52,7 +52,6 @@ define([
 
         routes: {
             'about': 'about',
-            'contact': 'contact',
             'projects': 'projects',
             'resume': 'resume',
             'blog': 'blog',
@@ -66,13 +65,6 @@ define([
          */
         home: function() {
             this._showBasicView(homeTemplate);
-        },
-
-        /**
-         * The contact page of the website.
-         */
-        contact: function() {
-            this._showBasicView(contactTemplate);
         },
 
         /**
