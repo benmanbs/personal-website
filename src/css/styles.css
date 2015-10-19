@@ -12,14 +12,19 @@ a {
 
 #content {
     margin-left: 200px;
-    width: auto;
     position: relative;
     overflow: auto;
     padding: 40px;
+    width: 600px;
 }
 
 .indent {
     padding-left: 20px;
+}
+
+.home-content {
+    padding-top:200px;
+    font-size: 20px;
 }
 
 /* menu */
@@ -101,14 +106,6 @@ a {
 .blog-date {
     color: gray;
     font-style: italic;
-}
-
-.blog-posts {
-    width: 600px;
-}
-
-.blog-post {
-    width: 600px;
 }
 
 .next-page {
