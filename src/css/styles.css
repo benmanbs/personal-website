@@ -35,6 +35,10 @@ a {
     font-size: 14px;
 }
 
+img {
+    vertical-align: top;
+}
+
 /* menu */
 
 #menu {
@@ -45,6 +49,7 @@ a {
     text-align: center;
     padding-top: 40px;
     font-size:17px;
+    overflow-x: scroll;
 }
 
 #menu ul {
@@ -78,6 +83,11 @@ a {
 #menu li a {
     text-decoration: none;
     color:black;
+}
+
+.project-description {
+    display: inline-block;
+    width: 444px;
 }
 
 /* contact me */
