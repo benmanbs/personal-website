@@ -15,7 +15,8 @@ a {
     position: relative;
     overflow: auto;
     padding: 40px;
-    width: 600px;
+    width: 680px;
+    font-size: 20px;
 }
 
 .indent {
@@ -24,7 +25,14 @@ a {
 
 .home-content {
     padding-top:200px;
-    font-size: 20px;
+}
+
+.footer {
+    font-size: 14px;
+}
+
+.resume-content {
+    font-size: 14px;
 }
 
 /* menu */
@@ -102,6 +110,14 @@ a {
 
 
 /* blog */
+
+.blog-posts {
+    font-size: 14px;
+}
+
+.blog-post {
+    font-size: 14px;
+}
 
 .blog-date {
     color: gray;
