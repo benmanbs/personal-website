@@ -19,6 +19,8 @@ define([
     return Marionette.ItemView.extend({
         template: _.template(template),
 
+        className: 'blog-snippet',
+
         templateHelpers: function() {
             return _.extend({}, this.model.toJSON(), {
                 content: this.model.get('content').substr(0, this.model.get('content').lastIndexOf(' ', this.options.numChars)),

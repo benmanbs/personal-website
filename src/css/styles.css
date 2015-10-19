@@ -1,15 +1,13 @@
-#menu {
-    position: fixed;
-    height: 100%;
-    width: 200px;
-    border-right: 2px solid grey;
-    text-align: center;
-    padding-top: 40px;
+/* Basic styles */
+
+a:hover {
+    text-decoration: none;
+    color: #53B986;
 }
 
-#menu ul {
-    list-style: none;
-    padding-left: 0;
+a {
+    text-decoration: none;
+    color: #339966;
 }
 
 #content {
@@ -18,4 +16,117 @@
     position: relative;
     overflow: auto;
     padding: 40px;
+}
+
+.indent {
+    padding-left: 20px;
+}
+
+/* menu */
+
+#menu {
+    position: fixed;
+    height: 100%;
+    width: 200px;
+    border-right: 2px solid grey;
+    text-align: center;
+    padding-top: 40px;
+    font-size:17px;
+}
+
+#menu ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#menu li {
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+#menu li:hover {
+    background: #53B986 !important;
+}
+
+#menu li.current {
+    background: #339966;
+}
+
+#menu li.current a{
+    color:white;
+}
+
+#menu li:hover a{
+    color:white;
+}
+
+#menu li a {
+    text-decoration: none;
+    color:black;
+}
+
+/* contact me */
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.mail {
+    background: url('/images/mail.png');
+}
+
+.github {
+    background: url('/images/github.png');
+}
+
+.g-plus {
+    background: url('/images/g-plus.png');
+}
+
+.linked-in {
+    background: url('/images/linked-in.png');
+}
+
+.facebook {
+    background: url('/images/facebook.png');
+}
+
+
+/* blog */
+
+.blog-date {
+    color: gray;
+    font-style: italic;
+}
+
+.blog-posts {
+    width: 600px;
+}
+
+.blog-post {
+    width: 600px;
+}
+
+.next-page {
+    font-size: 16px;
+    float: right;
+}
+
+.previous-page {
+    font-size: 16px;
+}
+
+.back-to-blog {
+    font-size: 16px;
+}
+
+.blog-snippet-end {width: 540px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid gray;
+    margin-left: 30px;
 }

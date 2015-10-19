@@ -1,11 +1,11 @@
 <h1>Posts</h1>
-<br><br>
+<br>
 <div class="posts"></div>
 <div class="navigation">
     <% if(showPrev) {%>
-        <span><a href="./#blog/<%=page-1%>">Previous Page</a></span>
+        <span class="previous-page"><a href="./#blog/<%=page-1%>">Previous Page</a></span>
     <% } %>
     <% if(showNext) {%>
-        <span><a href="./#blog/<%=page+1%>">Next Page</a></span>
+        <span class="next-page"><a href="./#blog/<%=page+1%>">Next Page</a></span>
     <% } %>
 </div>
