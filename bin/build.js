@@ -38,7 +38,7 @@ console.log('Cleaning up target dir');
 shell.exec('rm -rf target');
 
 console.log('Generating blog directory');
-var filePath = path.join(__dirname, 'blog_posts');
+var filePath = path.join(__dirname, '../', 'blog_posts');
 
 console.log("Loading blog posts from " + filePath);
 var files = fs.readdirSync(filePath);
@@ -76,8 +76,5 @@ shell.exec('cp -r src/* target/');
 
 console.log('Generating blog collection JSON');
 var postsString = postsTemplate({posts:posts.join(',')});
-fs.writeFileSync(path.join(__dirname, 'target', 'js' ,'blogCollection.js'), postsString);
-
-console.log('Uploading site to s3');
-shell.exec('aws --profile personal s3 sync --delete target s3://benjaminshai.com --cache-control max-age=0');
+fs.writeFileSync(path.join(__dirname, '../', 'target', 'js' ,'blogCollection.js'), postsString);
 
