@@ -1,6 +1,6 @@
 var staticServer = require('node-static');
 
-var docRoot = new staticServer.Server('./src');
+var docRoot = new staticServer.Server('./target');
 
 var port = 3000;
 require('http').createServer(function (request, response) {

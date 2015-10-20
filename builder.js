@@ -4,11 +4,13 @@
  * @author bshai date 10/12/15.
  */
 
+// libs
 var fs = require('fs');
 var path = require('path');
-var ncp = require('ncp').ncp;
-var archiver = require('archiver');
+var shell = require('shelljs');
 var _ = require('underscore');
+
+// templates
 var postsTemplate = _.template("define([], function () {\n" +
     "\t'use strict';\n" +
     "\n" +
@@ -16,10 +18,14 @@ var postsTemplate = _.template("define([], function () {\n" +
     "});");
 var postTemplate = _.template("\n\t\t'<%= url%>': {\n\t\t\turl: '<%= url%>', \n\t\t\ttitle: '<%= title%>', \n\t\t\tdate: new Date('<%= date%>'), \n\t\t\tcontent: '<%= content%>'\n\t\t}")
 
-var filePath = path.join(__dirname, 'blog_posts');
-
-console.log("Loading blog posts from " + filePath);
-
+// helper functions
+/**
+ * Clean up the content of a post. Turns "'" into "\'", and new lines ("\n") into "' + \n '" so it will
+ * work with the json file.
+ *
+ * @param content
+ * @returns {string}
+ */
 var sanitizeContent = function(content) {
     // clean up the quotes
     content = content.replace(/'/g, '\\\'');
@@ -28,6 +34,13 @@ var sanitizeContent = function(content) {
     return content;
 };
 
+console.log('Cleaning up target dir');
+shell.exec('rm -rf target');
+
+console.log('Generating blog directory');
+var filePath = path.join(__dirname, 'blog_posts');
+
+console.log("Loading blog posts from " + filePath);
 var files = fs.readdirSync(filePath);
 
 console.log("Found " + files.length + " post(s).");
@@ -36,41 +49,35 @@ var posts = [];
 _.each(files, function(file) {
     console.log('Procesing post ' + file);
 
+    // get file contents
     data = fs.readFileSync(path.join(filePath, file), {encoding: 'utf-8'});
 
+    // parse out title
     var titleEnd = data.indexOf('\n\n');
-    var title = data.substr(0,titleEnd);
+    var title = sanitizeContent(data.substr(0,titleEnd));
     data = data.substr(titleEnd + 2);
 
+    // parse out date
     var dateEnd = data.indexOf('\n\n');
     var date = data.substr(0,dateEnd);
     data = data.substr(dateEnd + 2);
 
+    // get content
     data = sanitizeContent(data);
 
     posts.push(postTemplate({url: file, title: title, date: date, content: data}));
 });
 
-ncp(path.join(__dirname, 'src'), path.join(__dirname, 'target'), function (err) {
-    if (err) {
-        return console.error(err);
-    }
-    var postsString = postsTemplate({posts:posts.join(',')});
-    fs.writeFile(path.join(__dirname, 'target', 'js' ,'blogCollection.js'), postsString, function(err) {
-        if (err) {
-            return console.error(err);
-        }
-        var archive = archiver.create('zip', {});
+console.log('Creating target directory');
+shell.exec('mkdir target');
 
-        archive.on('entry', function(data) {
-            fs.writeFile(path.join(__dirname, 'target', 'site.zip'), data, function(err) {
-                if (err) {
-                    return console.error(err);
-                }
-            });
-        });
+console.log('Filling target directory with src contents');
+shell.exec('cp -r src/* target/');
 
-        archive.directory(path.join(__dirname, 'target')).finalize();
-    })
-});
+console.log('Generating blog collection JSON');
+var postsString = postsTemplate({posts:posts.join(',')});
+fs.writeFileSync(path.join(__dirname, 'target', 'js' ,'blogCollection.js'), postsString);
+
+console.log('Uploading site to s3');
+shell.exec('aws --profile personal s3 sync --delete target s3://benjaminshai.com --cache-control max-age=0');
 
