@@ -1,5 +1,7 @@
 var staticServer = require('node-static');
 
+require('./build.js');
+
 var docRoot = new staticServer.Server('./target');
 
 var port = 3000;
