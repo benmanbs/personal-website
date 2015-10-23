@@ -103,7 +103,7 @@ define([
          * The blog page of the website.
          */
         blogPost: function(id) {
-            this._showView(new BlogPostView({model: new Backbone.Model(blogCollection[id])}), 'blog', blogCollection[id].title);
+            this._showView(new BlogPostView({model: new Backbone.Model(blogCollection[id])}), 'blog', blogCollection[id].title, true);
         },
         
         _showBasicView: function(template, menu, title) {
@@ -111,11 +111,11 @@ define([
             this._showView(homeView, menu, title);
         },
 
-        _showView: function (view, menu, title) {
+        _showView: function (view, menu, title, titleFirst) {
             $('#menu li').removeClass('current');
             $('#menu li.' + menu).addClass('current');
             window.scrollTo(0, 0);
-            document.title = "Benjamin Shai | " + title;
+            document.title = titleFirst ? title + " | Benjamin Shai" : "Benjamin Shai | " + title;
             this.view.getRegion('content').show(view);
         },
 
