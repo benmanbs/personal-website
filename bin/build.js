@@ -30,7 +30,7 @@ var sanitizeContent = function(content) {
     // clean up the quotes
     content = content.replace(/'/g, '\\\'');
     // clean up the \n
-    content = content.replace(/\n/g, '\' + \n\t\t\t\t\'<br>');
+    content = content.replace(/\n/g, '\' + \n\t\t\t\t\'');
     return content;
 };
 
