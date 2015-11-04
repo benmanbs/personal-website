@@ -1,0 +1,53 @@
+How This Site was Made
+
+11/03/15
+
+As mentioned in my previous post, this is my third take at having a personal website with a blog functionality. As my experience with Wordpress was less than pleasant (read: it got hacked multiple times and made me miserable), I decided to build this site from scratch. This post attempts to explain how the site is made.
+
+Like I mention on the home page and the projects page, the full source of this site is available on <a href="https://github.com/benmanbs/personal-website" target="_blank">github</a>. I will give attempt to give a little explanation here as to how exactly everything works.
+
+First of all, I need to mention that this style of site is heavily inspired by Peter Wagener's excellent <a href="https://github.com/pwagener/backbone.conduit" target="_blank"?>Backbone.Conduit</a> project, notably its <a href="http://conduit.wagener.org/docs/" target="_blank">documentation site</a>.
+
+This site is hosted entirely out of Amazon's S3 infrastructure. There's nothing particularly groundbreaking about hosting a static site out of S3; in fact it's pretty common. If you need a hand getting a static site up on S3, check out <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html" target="_blank">this tutorial</a>. If you're struggling with getting your domain name to point to the correct bucket in S3, <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html" target="_blank">this tutorial</a> will help.
+
+Where this site gets interesting is in that it's a blog which is entirely static. There's no database powering it. That means that whenever a new post is posted (like this very one), the position of every other post shifts down by one.
+
+I decided that it would quickly scale out of control to manage that sort of page creation and updating by hand, so I coded up a quick blog structure in Backbone.js (mainly <a href="https://github.com/benmanbs/personal-website/tree/master/src/js" target="_blank">here</a>). The complicated part was the storage of the data. Since the blog is fully static, there can be no database backing it.
+
+The solution I went with for data is the following:
+
+All of my blog posts are saved individually in files (also <a href="https://github.com/benmanbs/personal-website/tree/master/blog_posts" target="_blank">checked in</a> to the git repo). Each file has a few requirements:
+<ol>
+    <li>The name of the file needs to be the desired url.</li>
+    <li>The first line of the file needs to contain the blog post title.</li>
+    <li>The third line of the file needs to contain the date of publish.</li>
+    <li>The content of the blog post should follow, with HTML tags for any markup that is needed.</li>
+</ol>
+This allowed me to take all my blog posts from my old Wordpress site and migrate them over relatively easily. It also means that I can make updates to the site on a whole with only knowledge of HTML; no context switches needed to go to Markdown or any other markup language.
+
+Next, there's a <a href="https://github.com/benmanbs/personal-website/blob/master/bin/build.js" target="_blank">node script</a> that iterates through all of the posts, and assembles a large JavaScript formatted file in the following format:
+
+<pre>define([], function () {
+	'use strict';
+
+	return {
+		'blog-post-url': {
+			url: 'blog-post-url',
+			title: 'Blog Post Title',
+			date: new Date('blog post date, format(mm/dd/yy)'),
+			content: 'This is the blog content'
+		},
+		...
+	};
+});
+</pre>
+
+Since it's a giant JavaScript object, that allows me to quickly look up a post by url. And to show the blog posts page, I just run <code>_.values()</code> on the object to get a collection, and sort it by publish date.
+
+Finally, since I don't want to have to manually upload this to S3 every time I make a change, I wrote another <a href="https://github.com/benmanbs/personal-website/blob/master/bin/publish.js" target="_blank">node script</a> which calls the build script and syncs the generated target directory with AWS.
+
+Important note: in the S3 sync call I have the line <code>--cache-control max-age=0</code>. This is there to ensure that clients' browsers aren't caching the javascript files, since updates to javascript files actually effect the blog content.
+
+So that's about all there is to it. It's admittedly rudimentary, but it suits my needs, and was a fun project.
+
+If you have any more in depth questions about how the site is build, I invite you to peruse the source on github (linked above), or feel free to shoot me an email.

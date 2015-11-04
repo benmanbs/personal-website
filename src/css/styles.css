@@ -48,7 +48,7 @@ img {
     border-right: 2px solid grey;
     text-align: center;
     padding-top: 40px;
-    font-size:17px;
+    font-size:20px;
     overflow-x: scroll;
 }
 
@@ -122,16 +122,17 @@ img {
 /* blog */
 
 .blog-posts {
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .blog-post {
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .blog-date {
     color: gray;
     font-style: italic;
+    font-size: 16px;
 }
 
 .next-page {
